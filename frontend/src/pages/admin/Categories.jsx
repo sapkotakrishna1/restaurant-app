@@ -10,10 +10,6 @@ import {
 } from "lucide-react";
 import "./Categories.css";
 
-const response = await fetch(
-  `${API_URL}/categories`
-);
-
 // ==========================================
 // CATEGORY SUGGESTIONS
 // ==========================================
@@ -125,7 +121,8 @@ function Categories() {
       setError("");
 
       const response = await fetch(
-  `${API_URL}/categories`)
+        `${API_URL}/categories`
+      );
 
       const data = await response.json();
 
@@ -227,7 +224,6 @@ function Categories() {
 
     // ==========================================
     // AUTO DESCRIPTION
-    // When admin selects/types category name
     // ==========================================
 
     if (name === "name") {
@@ -265,7 +261,9 @@ function Categories() {
     }
 
     if (!formData.description.trim()) {
-      alert("Please enter category description");
+      alert(
+        "Please enter category description"
+      );
       return;
     }
 
@@ -275,9 +273,16 @@ function Categories() {
       const isEditing =
         Boolean(editingCategory);
 
+      // IMPORTANT:
+      // API_URL = https://restaurant-app-s5dp.onrender.com/api
+      //
+      // Therefore category endpoints are:
+      // /api/categories
+      // /api/categories/:id
+
       const url = isEditing
-        ? `${API_URL}/${editingCategory.id}`
-        : API_URL;
+        ? `${API_URL}/categories/${editingCategory.id}`
+        : `${API_URL}/categories`;
 
       const method = isEditing
         ? "PUT"
@@ -285,14 +290,18 @@ function Categories() {
 
       const response = await fetch(url, {
         method,
+
         headers: {
           "Content-Type":
             "application/json",
         },
+
         body: JSON.stringify({
           name: categoryName,
+
           description:
             formData.description.trim(),
+
           status: formData.status,
         }),
       });
@@ -340,7 +349,7 @@ function Categories() {
     try {
       const response =
         await fetch(
-          `${API_URL}/${id}`,
+          `${API_URL}/categories/${id}`,
           {
             method: "DELETE",
           }
@@ -382,7 +391,9 @@ function Categories() {
   if (loading) {
     return (
       <div className="categories-page">
+
         <div className="categories-header">
+
           <div>
             <h1>Categories</h1>
 
@@ -391,11 +402,13 @@ function Categories() {
               categories
             </p>
           </div>
+
         </div>
 
         <div className="category-message">
           Loading categories...
         </div>
+
       </div>
     );
   }
@@ -410,13 +423,16 @@ function Categories() {
       {/* HEADER */}
 
       <div className="categories-header">
+
         <div>
+
           <h1>Categories</h1>
 
           <p>
             Manage your restaurant food
             categories
           </p>
+
         </div>
 
         <button
@@ -427,12 +443,14 @@ function Categories() {
 
           Add Category
         </button>
+
       </div>
 
       {/* ERROR */}
 
       {error && (
         <div className="category-error">
+
           {error}
 
           <button
@@ -440,6 +458,7 @@ function Categories() {
           >
             Retry
           </button>
+
         </div>
       )}
 
@@ -448,6 +467,7 @@ function Categories() {
       <div className="categories-toolbar">
 
         <div className="category-search">
+
           <Search size={18} />
 
           <input
@@ -458,12 +478,16 @@ function Categories() {
               setSearch(e.target.value)
             }
           />
+
         </div>
 
         <div className="category-count">
+
           {filteredCategories.length}{" "}
           Categories
+
         </div>
+
       </div>
 
       {/* DESKTOP TABLE */}
@@ -473,6 +497,7 @@ function Categories() {
         <table className="categories-table">
 
           <thead>
+
             <tr>
               <th>ID</th>
               <th>Category</th>
@@ -481,14 +506,16 @@ function Categories() {
               <th>Status</th>
               <th>Actions</th>
             </tr>
+
           </thead>
 
           <tbody>
 
-            {filteredCategories.length >
-            0 ? (
+            {filteredCategories.length > 0 ? (
+
               filteredCategories.map(
                 (category) => (
+
                   <tr
                     key={category.id}
                   >
@@ -498,26 +525,37 @@ function Categories() {
                     </td>
 
                     <td>
+
                       <div className="category-name">
                         {category.name}
                       </div>
+
                     </td>
 
                     <td>
+
                       <span className="category-description">
+
                         {category.description ||
                           "No description"}
+
                       </span>
+
                     </td>
 
                     <td>
+
                       <span className="food-count">
+
                         {category.foods ??
                           0}
+
                       </span>
+
                     </td>
 
                     <td>
+
                       <span
                         className={`status-badge ${
                           category.status ===
@@ -526,11 +564,15 @@ function Categories() {
                             : "inactive"
                         }`}
                       >
+
                         {category.status}
+
                       </span>
+
                     </td>
 
                     <td>
+
                       <div className="category-actions">
 
                         <button
@@ -542,9 +584,11 @@ function Categories() {
                           }
                           title="Edit"
                         >
+
                           <Pencil
                             size={16}
                           />
+
                         </button>
 
                         <button
@@ -556,41 +600,57 @@ function Categories() {
                           }
                           title="Delete"
                         >
+
                           <Trash2
                             size={16}
                           />
+
                         </button>
 
                       </div>
+
                     </td>
 
                   </tr>
+
                 )
               )
+
             ) : (
+
               <tr>
+
                 <td colSpan="6">
+
                   <div className="no-categories">
+
                     {search
                       ? "No categories found"
                       : "No categories available"}
+
                   </div>
+
                 </td>
+
               </tr>
+
             )}
 
           </tbody>
+
         </table>
+
       </div>
 
       {/* MOBILE CARDS */}
 
       <div className="categories-mobile">
 
-        {filteredCategories.length >
-        0 ? (
+        {filteredCategories.length > 0 ? (
+
           filteredCategories.map(
             (category) => (
+
               <div
                 className="category-card"
                 key={category.id}
@@ -599,6 +659,7 @@ function Categories() {
                 <div className="category-card-top">
 
                   <div>
+
                     <h3>
                       {category.name}
                     </h3>
@@ -606,6 +667,7 @@ function Categories() {
                     <span className="category-id">
                       #{category.id}
                     </span>
+
                   </div>
 
                   <span
@@ -616,24 +678,30 @@ function Categories() {
                         : "inactive"
                     }`}
                   >
+
                     {category.status}
+
                   </span>
 
                 </div>
 
                 <p>
+
                   {category.description ||
                     "No description"}
+
                 </p>
 
                 <div className="category-card-bottom">
 
                   <span>
+
                     <strong>
                       {category.foods ??
                         0}
                     </strong>{" "}
                     Foods
+
                   </span>
 
                   <div className="category-actions">
@@ -646,9 +714,11 @@ function Categories() {
                         )
                       }
                     >
+
                       <Pencil
                         size={16}
                       />
+
                     </button>
 
                     <button
@@ -659,23 +729,32 @@ function Categories() {
                         )
                       }
                     >
+
                       <Trash2
                         size={16}
                       />
+
                     </button>
 
                   </div>
+
                 </div>
 
               </div>
+
             )
           )
+
         ) : (
+
           <div className="no-categories">
+
             {search
               ? "No categories found"
               : "No categories available"}
+
           </div>
+
         )}
 
       </div>
@@ -683,6 +762,7 @@ function Categories() {
       {/* MODAL */}
 
       {showModal && (
+
         <div
           className="category-modal-overlay"
           onClick={closeModal}
@@ -702,15 +782,19 @@ function Categories() {
               <div>
 
                 <h2>
+
                   {editingCategory
                     ? "Edit Category"
                     : "Add Category"}
+
                 </h2>
 
                 <p>
+
                   {editingCategory
                     ? "Update category information"
                     : "Create a new food category"}
+
                 </p>
 
               </div>
@@ -720,7 +804,9 @@ function Categories() {
                 onClick={closeModal}
                 disabled={saving}
               >
+
                 <X size={20} />
+
               </button>
 
             </div>
@@ -744,9 +830,7 @@ function Categories() {
                   name="name"
                   placeholder="e.g. Pizza"
                   value={formData.name}
-                  onChange={
-                    handleChange
-                  }
+                  onChange={handleChange}
                   disabled={saving}
                   autoFocus
                   list="category-name-suggestions"
@@ -755,18 +839,18 @@ function Categories() {
                 <datalist
                   id="category-name-suggestions"
                 >
+
                   {CATEGORY_NAME_SUGGESTIONS.map(
                     (categoryName) => (
+
                       <option
-                        key={
-                          categoryName
-                        }
-                        value={
-                          categoryName
-                        }
+                        key={categoryName}
+                        value={categoryName}
                       />
+
                     )
                   )}
+
                 </datalist>
 
               </div>
@@ -786,9 +870,7 @@ function Categories() {
                   value={
                     formData.description
                   }
-                  onChange={
-                    handleChange
-                  }
+                  onChange={handleChange}
                   disabled={saving}
                 />
 
@@ -807,9 +889,7 @@ function Categories() {
                   value={
                     formData.status
                   }
-                  onChange={
-                    handleChange
-                  }
+                  onChange={handleChange}
                   disabled={saving}
                 >
 
@@ -832,9 +912,7 @@ function Categories() {
                 <button
                   type="button"
                   className="cancel-btn"
-                  onClick={
-                    closeModal
-                  }
+                  onClick={closeModal}
                   disabled={saving}
                 >
                   Cancel
@@ -850,9 +928,7 @@ function Categories() {
                     "Saving..."
                   ) : (
                     <>
-                      <Check
-                        size={17}
-                      />
+                      <Check size={17} />
 
                       {editingCategory
                         ? "Update Category"
@@ -869,6 +945,7 @@ function Categories() {
           </div>
 
         </div>
+
       )}
 
     </div>
