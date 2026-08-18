@@ -1,0 +1,37 @@
+.menu-page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 50px 20px;
+}
+
+.menu-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.menu-header h1 {
+  font-size: 40px;
+  margin-bottom: 10px;
+}
+
+.menu-header p {
+  color: #666;
+}
+
+.food-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+}
+
+@media (max-width: 900px) {
+  .food-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .food-container {
+    grid-template-columns: 1fr;
+  }
+}

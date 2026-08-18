@@ -1,0 +1,1027 @@
+/* =========================================================
+   HOME
+========================================================= */
+
+.home {
+  width: 100%;
+  min-height: 100vh;
+
+  background: #f8f6f2;
+
+  color: #29231f;
+
+  overflow-x: hidden;
+}
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.hero {
+  position: relative;
+
+  min-height: 650px;
+
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+
+  overflow: hidden;
+
+  background: #f5f2ed;
+}
+
+
+/* =========================================================
+   FULL SCREEN FOOD SLIDES
+========================================================= */
+
+.hero-foods {
+  position: absolute;
+
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  overflow: hidden;
+
+  pointer-events: none;
+
+  background: #f5f2ed;
+}
+
+
+/* =========================================================
+   EACH FOOD IMAGE
+========================================================= */
+
+.hero-food {
+  position: absolute;
+
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  overflow: hidden;
+
+  opacity: 0;
+
+  visibility: hidden;
+
+  transform: scale(1.06);
+
+  animation-name: foodBackground;
+  animation-duration: var(--total);
+  animation-delay: var(--delay);
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+
+  will-change: opacity, transform;
+}
+
+
+/* =========================================================
+   FOOD IMAGE
+========================================================= */
+
+.hero-food img {
+  width: 100%;
+  height: 100%;
+
+  display: block;
+
+  object-fit: cover;
+
+  object-position: center;
+
+  filter:
+    saturate(1.04)
+    contrast(.98)
+    brightness(1.02);
+
+  transform: scale(1.02);
+
+  user-select: none;
+}
+
+
+/* =========================================================
+   LIGHT OVERLAY
+
+   Left side = lighter for text
+   Right side = food remains visible
+========================================================= */
+
+.hero-overlay {
+  position: absolute;
+
+  inset: 0;
+
+  z-index: 2;
+
+  pointer-events: none;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(255, 255, 255, .94) 0%,
+      rgba(255, 255, 255, .88) 20%,
+      rgba(255, 255, 255, .65) 38%,
+      rgba(255, 255, 255, .28) 58%,
+      rgba(255, 255, 255, .08) 78%,
+      rgba(255, 255, 255, .02) 100%
+    );
+}
+
+
+/* =========================================================
+   SOFT LIGHT
+========================================================= */
+
+.hero::after {
+  content: "";
+
+  position: absolute;
+
+  inset: 0;
+
+  z-index: 3;
+
+  pointer-events: none;
+
+  background:
+    radial-gradient(
+      circle at 20% 50%,
+      rgba(255,255,255,.35),
+      transparent 45%
+    );
+}
+
+
+/* =========================================================
+   HERO CONTENT
+========================================================= */
+
+.hero-content {
+  position: relative;
+
+  z-index: 5;
+
+  width: min(1180px, 90%);
+
+  margin: 0 auto;
+
+  padding-right: 48%;
+
+  animation:
+    contentEnter
+    .8s
+    ease
+    both;
+}
+
+
+/* =========================================================
+   SMALL TITLE
+========================================================= */
+
+.hero-small-title {
+  display: inline-block;
+
+  margin-bottom: 20px;
+
+  color: #c8672c;
+
+  font-size: 11px;
+
+  font-weight: 800;
+
+  letter-spacing: 2.5px;
+}
+
+
+/* =========================================================
+   HERO TITLE
+========================================================= */
+
+.hero h1 {
+  margin: 0;
+
+  color: #27211d;
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  font-size:
+    clamp(
+      52px,
+      6vw,
+      80px
+    );
+
+  line-height: .98;
+
+  letter-spacing: -3px;
+
+  font-weight: 700;
+
+  text-shadow:
+    0 2px 20px rgba(255,255,255,.6);
+}
+
+
+/* =========================================================
+   OPTIONAL SPAN
+========================================================= */
+
+.hero h1 span {
+  color: #c8672c;
+}
+
+
+/* =========================================================
+   HERO DESCRIPTION
+========================================================= */
+
+.hero p {
+  max-width: 500px;
+
+  margin:
+    25px
+    0
+    30px;
+
+  color: #625951;
+
+  font-size: 16px;
+
+  line-height: 1.8;
+
+  text-shadow:
+    0 1px 10px rgba(255,255,255,.7);
+}
+
+
+/* =========================================================
+   HERO BUTTON
+========================================================= */
+
+.hero-button {
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 15px;
+
+  padding:
+    14px
+    19px
+    14px
+    23px;
+
+  border-radius: 9px;
+
+  background: #c8672c;
+
+  color: #fff;
+
+  text-decoration: none;
+
+  font-size: 14px;
+
+  font-weight: 700;
+
+  box-shadow:
+    0 10px 30px
+    rgba(200,103,44,.25);
+
+  transition:
+    transform .25s ease,
+    background .25s ease,
+    box-shadow .25s ease;
+}
+
+
+.hero-button span {
+  font-size: 18px;
+
+  transition:
+    transform .25s ease;
+}
+
+
+.hero-button:hover {
+  background: #ae5220;
+
+  transform:
+    translateY(-3px);
+
+  box-shadow:
+    0 15px 35px
+    rgba(200,103,44,.32);
+}
+
+
+.hero-button:hover span {
+  transform:
+    translateX(5px);
+}
+
+
+/* =========================================================
+   SCROLL DOWN
+========================================================= */
+
+.scroll-down {
+  position: absolute;
+
+  z-index: 6;
+
+  left: 50%;
+  bottom: 20px;
+
+  transform:
+    translateX(-50%);
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  gap: 7px;
+
+  color:
+    rgba(50,40,34,.65);
+
+  text-decoration: none;
+
+  font-size: 10px;
+
+  letter-spacing: 1px;
+}
+
+
+.scroll-down span {
+  width: 1px;
+
+  height: 30px;
+
+  background:
+    rgba(50,40,34,.45);
+
+  animation:
+    scrollMove
+    1.5s
+    infinite;
+}
+
+
+/* =========================================================
+   MENU SECTION
+========================================================= */
+
+.popular-foods {
+  width: min(1180px, 90%);
+
+  margin: auto;
+
+  padding:
+    85px
+    0
+    100px;
+}
+
+
+/* =========================================================
+   SECTION HEADER
+========================================================= */
+
+.section-top {
+  display: flex;
+
+  align-items: flex-end;
+
+  justify-content: space-between;
+
+  gap: 30px;
+
+  margin-bottom: 40px;
+}
+
+
+.section-label {
+  display: block;
+
+  margin-bottom: 8px;
+
+  color: #c8672c;
+
+  font-size: 11px;
+
+  font-weight: 800;
+
+  letter-spacing: 2px;
+}
+
+
+.section-top h2 {
+  margin: 0;
+
+  color: #29231f;
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  font-size: 42px;
+
+  line-height: 1.1;
+}
+
+
+.section-top p {
+  margin:
+    9px
+    0
+    0;
+
+  color: #817871;
+
+  font-size: 14px;
+}
+
+
+/* =========================================================
+   SEARCH
+========================================================= */
+
+.search-box {
+  width: 290px;
+
+  height: 47px;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 9px;
+
+  padding:
+    0
+    13px;
+
+  border:
+    1px solid #e4ddd6;
+
+  border-radius: 10px;
+
+  background: white;
+
+  box-shadow:
+    0 8px 25px
+    rgba(44,31,21,.04);
+
+  transition:
+    border-color .2s ease,
+    box-shadow .2s ease;
+}
+
+
+.search-box:focus-within {
+  border-color: #c8672c;
+
+  box-shadow:
+    0 0 0 4px
+    rgba(200,103,44,.08);
+}
+
+
+.search-box span {
+  color: #9a9088;
+
+  font-size: 19px;
+}
+
+
+.search-box input {
+  width: 100%;
+
+  border: 0;
+
+  outline: 0;
+
+  background: transparent;
+
+  color: #332a24;
+
+  font-size: 14px;
+}
+
+
+.search-box input::placeholder {
+  color: #aaa;
+}
+
+
+.search-box button {
+  border: 0;
+
+  background: transparent;
+
+  color: #999;
+
+  font-size: 20px;
+
+  cursor: pointer;
+}
+
+
+.search-box button:hover {
+  color: #c8672c;
+}
+
+
+/* =========================================================
+   FOOD GRID
+========================================================= */
+
+.food-container {
+  display: grid;
+
+  grid-template-columns:
+    repeat(4, minmax(0, 1fr));
+
+  gap: 22px;
+}
+
+
+/* =========================================================
+   FOOD CARD APPEAR
+========================================================= */
+
+.food-container > * {
+  opacity: 0;
+
+  animation:
+    foodAppear
+    .55s
+    cubic-bezier(.2,.8,.2,1)
+    forwards;
+}
+
+
+.food-container > *:nth-child(1) {
+  animation-delay: .05s;
+}
+
+
+.food-container > *:nth-child(2) {
+  animation-delay: .10s;
+}
+
+
+.food-container > *:nth-child(3) {
+  animation-delay: .15s;
+}
+
+
+.food-container > *:nth-child(4) {
+  animation-delay: .20s;
+}
+
+
+.food-container > *:nth-child(5) {
+  animation-delay: .25s;
+}
+
+
+.food-container > *:nth-child(6) {
+  animation-delay: .30s;
+}
+
+
+.food-container > *:nth-child(7) {
+  animation-delay: .35s;
+}
+
+
+.food-container > *:nth-child(8) {
+  animation-delay: .40s;
+}
+
+
+/* =========================================================
+   EMPTY BOX
+========================================================= */
+
+.empty-box {
+  padding:
+    60px
+    20px;
+
+  border:
+    1px solid #e8e0d8;
+
+  border-radius: 14px;
+
+  background: white;
+
+  text-align: center;
+}
+
+
+.empty-icon {
+  margin-bottom: 12px;
+
+  font-size: 42px;
+}
+
+
+.empty-box h3 {
+  margin:
+    0
+    0
+    8px;
+
+  color: #302822;
+
+  font-family:
+    Georgia,
+    serif;
+
+  font-size: 23px;
+}
+
+
+.empty-box p {
+  margin:
+    0
+    0
+    20px;
+
+  color: #777;
+}
+
+
+.empty-box button {
+  border: 0;
+
+  padding:
+    11px
+    20px;
+
+  border-radius: 8px;
+
+  background: #c8672c;
+
+  color: white;
+
+  font-weight: 700;
+
+  cursor: pointer;
+}
+
+
+/* =========================================================
+   ⭐ MAIN FOOD SLIDER
+
+   IMPORTANT:
+
+   Every food gets 3 seconds.
+
+   Example with 6 foods:
+
+   Food 1 = 0s
+   Food 2 = 3s
+   Food 3 = 6s
+   Food 4 = 9s
+   Food 5 = 12s
+   Food 6 = 15s
+
+   Then:
+   Food 1 = 18s
+
+   There is NO extra waiting period.
+========================================================= */
+
+@keyframes foodBackground {
+
+  /* START */
+  0% {
+    opacity: 0;
+
+    visibility: hidden;
+
+    transform:
+      scale(1.06);
+  }
+
+
+  /* QUICK SMOOTH ENTRY */
+  2% {
+    opacity: 0;
+
+    visibility: visible;
+  }
+
+
+  /* FADE IN */
+  5% {
+    opacity: 1;
+
+    visibility: visible;
+
+    transform:
+      scale(1.025);
+  }
+
+
+  /* FULLY VISIBLE */
+  10% {
+    opacity: 1;
+
+    visibility: visible;
+
+    transform:
+      scale(1);
+  }
+
+
+  /* HOLD */
+  82% {
+    opacity: 1;
+
+    visibility: visible;
+
+    transform:
+      scale(1.01);
+  }
+
+
+  /* SMOOTH EXIT */
+  96% {
+    opacity: 0;
+
+    visibility: hidden;
+
+    transform:
+      scale(1.025);
+  }
+
+
+  /* RESET */
+  100% {
+    opacity: 0;
+
+    visibility: hidden;
+
+    transform:
+      scale(1.06);
+  }
+}
+
+
+/* =========================================================
+   CONTENT ANIMATION
+========================================================= */
+
+@keyframes contentEnter {
+
+  from {
+    opacity: 0;
+
+    transform:
+      translateX(-30px);
+  }
+
+  to {
+    opacity: 1;
+
+    transform:
+      translateX(0);
+  }
+}
+
+
+/* =========================================================
+   CARD ANIMATION
+========================================================= */
+
+@keyframes foodAppear {
+
+  from {
+    opacity: 0;
+
+    transform:
+      translateY(20px)
+      scale(.97);
+  }
+
+  to {
+    opacity: 1;
+
+    transform:
+      translateY(0)
+      scale(1);
+  }
+}
+
+
+/* =========================================================
+   SCROLL
+========================================================= */
+
+@keyframes scrollMove {
+
+  0%,
+  100% {
+    opacity: .35;
+
+    transform:
+      scaleY(.6);
+  }
+
+  50% {
+    opacity: 1;
+
+    transform:
+      scaleY(1);
+  }
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 1050px) {
+
+  .hero-content {
+    padding-right: 40%;
+  }
+
+  .food-container {
+    grid-template-columns:
+      repeat(3, 1fr);
+  }
+
+  .section-top {
+    align-items: flex-start;
+
+    flex-direction: column;
+  }
+
+  .search-box {
+    width: 100%;
+
+    max-width: 400px;
+  }
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 700px) {
+
+  .hero {
+    min-height: 650px;
+  }
+
+
+  .hero-content {
+    width: 90%;
+
+    padding-right: 0;
+
+    text-align: center;
+  }
+
+
+  .hero h1 {
+    font-size: 50px;
+  }
+
+
+  .hero p {
+    margin-left: auto;
+
+    margin-right: auto;
+  }
+
+
+  /* MOBILE LIGHT OVERLAY */
+
+  .hero-overlay {
+    background:
+      linear-gradient(
+        180deg,
+        rgba(255,255,255,.72) 0%,
+        rgba(255,255,255,.80) 40%,
+        rgba(255,255,255,.94) 100%
+      );
+  }
+
+
+  /* FULL SCREEN FOOD */
+
+  .hero-food img {
+    object-position: center;
+  }
+
+
+  .popular-foods {
+    width: 90%;
+
+    padding:
+      65px
+      0
+      75px;
+  }
+
+
+  .section-top h2 {
+    font-size: 35px;
+  }
+
+
+  .food-container {
+    grid-template-columns:
+      repeat(2, 1fr);
+
+    gap: 16px;
+  }
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 480px) {
+
+  .hero {
+    min-height: 610px;
+  }
+
+
+  .hero h1 {
+    font-size: 41px;
+  }
+
+
+  .hero p {
+    font-size: 14px;
+  }
+
+
+  .hero-overlay {
+    background:
+      linear-gradient(
+        180deg,
+        rgba(255,255,255,.80),
+        rgba(255,255,255,.95)
+      );
+  }
+
+
+  .food-container {
+    grid-template-columns: 1fr;
+  }
+
+
+  .section-top h2 {
+    font-size: 30px;
+  }
+
+
+  .search-box {
+    width: 100%;
+  }
+}
+
+
+/* =========================================================
+   REDUCE MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+
+    transition: none !important;
+  }
+}

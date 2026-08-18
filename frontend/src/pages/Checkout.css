@@ -1,0 +1,175 @@
+.checkout {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 20px;
+}
+
+.checkout h1 {
+  margin-bottom: 30px;
+}
+
+
+/* =========================
+   CHECKOUT ITEMS
+========================= */
+
+.checkout-items {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.checkout-item {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+
+  padding: 18px;
+
+  background: white;
+
+  border-radius: 10px;
+
+  box-shadow:
+    0 3px 10px
+    rgba(0, 0, 0, 0.08);
+}
+
+.checkout-item img {
+  width: 90px;
+  height: 90px;
+
+  object-fit: cover;
+
+  border-radius: 8px;
+}
+
+.checkout-item div {
+  flex: 1;
+}
+
+.checkout-item h3 {
+  margin: 0 0 8px;
+}
+
+.checkout-item p {
+  margin: 4px 0;
+
+  color: #666;
+}
+
+.checkout-item strong {
+  font-size: 18px;
+}
+
+
+/* =========================
+   TOTAL
+========================= */
+
+.checkout-total {
+  display: flex;
+  justify-content: flex-end;
+
+  margin-top: 25px;
+
+  padding: 20px;
+
+  border-top: 1px solid #ddd;
+}
+
+.checkout-total h2 {
+  margin: 0;
+}
+
+
+/* =========================
+   PLACE ORDER
+========================= */
+
+.place-order-button {
+  width: 100%;
+
+  margin-top: 20px;
+
+  padding: 15px;
+
+  border: none;
+
+  border-radius: 8px;
+
+  background: #222;
+
+  color: white;
+
+  font-size: 18px;
+
+  font-weight: bold;
+
+  cursor: pointer;
+}
+
+.place-order-button:hover {
+  opacity: 0.9;
+}
+
+.place-order-button:disabled {
+  opacity: 0.6;
+
+  cursor: not-allowed;
+}
+
+
+/* =========================
+   EMPTY CHECKOUT
+========================= */
+
+.checkout > p {
+  color: #666;
+}
+
+.checkout > button {
+  margin-top: 15px;
+
+  padding: 12px 20px;
+
+  border: none;
+
+  border-radius: 6px;
+
+  background: #222;
+
+  color: white;
+
+  cursor: pointer;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 600px) {
+
+  .checkout {
+    margin: 20px auto;
+
+    padding: 15px;
+  }
+
+  .checkout-item {
+    flex-wrap: wrap;
+  }
+
+  .checkout-item img {
+    width: 70px;
+    height: 70px;
+  }
+
+  .checkout-item strong {
+    width: 100%;
+
+    text-align: right;
+  }
+
+}
