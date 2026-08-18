@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { API_URL } from "../../config/config";
 import { useAuth } from "../../context/AuthContext";
 import "./Dashboard.css";
 
@@ -23,7 +24,7 @@ function Dashboard() {
       try {
 
         const response = await fetch(
-          "http://localhost:5000/api/orders/dashboard/stats",
+  `${API_URL}/orders/dashboard/stats`,
           {
             headers: {
               Authorization: `Bearer ${token}`

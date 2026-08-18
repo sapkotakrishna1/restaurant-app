@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import { useAuth } from "../context/AuthContext";
+import { API_URL } from "../config/config";
 import "./AdminFoods.css";
 
-const API_URL = "http://localhost:5000/api/foods";
-const CATEGORY_API_URL = "http://localhost:5000/api/categories";
+const FOODS_API_URL = `${API_URL}/foods`;
+const CATEGORY_API_URL = `${API_URL}/categories`;
+
 
 // =====================================================
 // FOOD SUGGESTIONS
@@ -176,7 +178,7 @@ function AdminFoods() {
       setLoading(true);
       setMessage("");
 
-      const response = await fetch(API_URL);
+      const response = await fetch(`${API_URL}/foods`);
       const data = await response.json();
 
       console.log("FOODS RESPONSE:", data);

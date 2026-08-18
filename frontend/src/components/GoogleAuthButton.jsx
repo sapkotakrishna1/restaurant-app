@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
+import { API_URL } from "../config/config";
 
 function GoogleAuthButton() {
   const googleButtonRef = useRef(null);
@@ -22,7 +23,7 @@ function GoogleAuthButton() {
 
     try {
       const serverResponse = await fetch(
-        "http://localhost:5000/api/auth/google",
+  `${API_URL}/api/auth/google`,
         {
           method: "POST",
 

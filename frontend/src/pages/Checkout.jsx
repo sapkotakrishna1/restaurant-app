@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
+import { API_URL } from "../config/config";
 import "./Checkout.css";
 
 function Checkout({
@@ -88,7 +89,7 @@ function Checkout({
 
       const response =
         await fetch(
-          "http://localhost:5000/api/orders",
+  `${API_URL}/orders`,
           {
 
             method: "POST",

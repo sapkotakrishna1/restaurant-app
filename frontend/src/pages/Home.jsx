@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import FoodCard from "../components/FoodCard";
+import { API_URL } from "../config/config";
 import "./Home.css";
 
 function Home({ addToCart, cart = [] }) {
@@ -14,7 +15,7 @@ function Home({ addToCart, cart = [] }) {
   useEffect(() => {
     const loadFoods = async () => {
       try {
-        const response = await fetch("http://localhost:5000/api/foods");
+        const response = await fetch(`${API_URL}/foods`);
         const data = await response.json();
 
         if (!response.ok) {

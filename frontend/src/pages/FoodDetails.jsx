@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { API_URL } from "../config/config";
 import "./FoodDetails.css";
 
 function FoodDetails({
@@ -20,8 +21,8 @@ function FoodDetails({
         setLoading(true);
         setError("");
 
-        const response = await fetch(
-          "http://localhost:5000/api/foods"
+        const response =  await fetch(
+  `${API_URL}/foods`
         );
 
         if (!response.ok) {

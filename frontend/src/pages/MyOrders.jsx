@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
+import { API_URL } from "../config/config";
 
 function MyOrders() {
   const navigate = useNavigate();
@@ -22,7 +23,7 @@ function MyOrders() {
       }
 
       const response = await fetch(
-        "http://localhost:5000/api/orders/my-orders",
+  `${API_URL}/orders/my-orders`,
         {
           method: "GET",
           headers: {
@@ -71,8 +72,8 @@ function MyOrders() {
     }
 
     try {
-      const response = await fetch(
-        `http://localhost:5000/api/orders/${orderId}/cancel`,
+      const response =  await fetch(
+  `${API_URL}/orders/${orderId}/cancel`,
         {
           method: "PUT",
           headers: {

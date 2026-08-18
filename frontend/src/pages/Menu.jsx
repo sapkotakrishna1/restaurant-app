@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import FoodCard from "../components/FoodCard";
+import { API_URL } from "../config/config";
 import "./Menu.css";
 
 function Menu({ addToCart, cart = [] }) {
@@ -14,8 +15,8 @@ function Menu({ addToCart, cart = [] }) {
         setError("");
 
         const response = await fetch(
-          "http://localhost:5000/api/foods"
-        );
+  `${API_URL}/foods`
+);
 
         const data = await response.json();
 

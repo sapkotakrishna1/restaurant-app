@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import GoogleAuthButton from "../components/GoogleAuthButton";
+import { API_URL } from "../config/config";
 import {
   Utensils,
   Mail,
@@ -38,7 +39,7 @@ function Login() {
 
     try {
       const response = await fetch(
-        "http://localhost:5000/api/auth/login",
+  `${API_URL}/auth/login`,
         {
           method: "POST",
           headers: {

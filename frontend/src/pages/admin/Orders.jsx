@@ -1,5 +1,6 @@
 
 import { useEffect, useState } from "react";
+import { API_URL } from "../../config/config";
 import { useAuth } from "../../context/AuthContext";
 
 function Orders() {
@@ -24,7 +25,7 @@ function Orders() {
       }
 
       const response = await fetch(
-        "http://localhost:5000/api/orders",
+  `${API_URL}/orders`,
         {
           method: "GET",
           headers: {
@@ -73,7 +74,7 @@ function Orders() {
   ) => {
     try {
       const response = await fetch(
-        `http://localhost:5000/api/orders/${orderId}/status`,
+  `${API_URL}/orders/${orderId}/status`,
         {
           method: "PUT",
 

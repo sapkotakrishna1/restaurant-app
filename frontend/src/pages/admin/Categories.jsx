@@ -1,3 +1,4 @@
+import { API_URL } from "../../config/config";
 import { useEffect, useState } from "react";
 import {
   Plus,
@@ -9,7 +10,9 @@ import {
 } from "lucide-react";
 import "./Categories.css";
 
-const API_URL = "http://localhost:5000/api/categories";
+const response = await fetch(
+  `${API_URL}/categories`
+);
 
 // ==========================================
 // CATEGORY SUGGESTIONS
@@ -121,7 +124,8 @@ function Categories() {
       setLoading(true);
       setError("");
 
-      const response = await fetch(API_URL);
+      const response = await fetch(
+  `${API_URL}/categories`)
 
       const data = await response.json();
 
