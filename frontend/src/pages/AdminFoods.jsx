@@ -6,7 +6,6 @@ import "./AdminFoods.css";
 const FOODS_API_URL = `${API_URL}/foods`;
 const CATEGORY_API_URL = `${API_URL}/categories`;
 
-
 // =====================================================
 // FOOD SUGGESTIONS
 // =====================================================
@@ -178,8 +177,19 @@ function AdminFoods() {
       setLoading(true);
       setMessage("");
 
-      const response = await fetch(`${API_URL}/foods`);
-      const data = await response.json();
+      const response = await fetch(FOODS_API_URL);
+
+      const text = await response.text();
+
+      let data = {};
+
+      try {
+        data = text ? JSON.parse(text) : {};
+      } catch {
+        throw new Error(
+          "Server returned an invalid response."
+        );
+      }
 
       console.log("FOODS RESPONSE:", data);
 
@@ -230,7 +240,17 @@ function AdminFoods() {
         CATEGORY_API_URL
       );
 
-      const data = await response.json();
+      const text = await response.text();
+
+      let data = {};
+
+      try {
+        data = text ? JSON.parse(text) : {};
+      } catch {
+        throw new Error(
+          "Server returned an invalid response."
+        );
+      }
 
       console.log(
         "CATEGORIES RESPONSE:",
@@ -403,10 +423,6 @@ function AdminFoods() {
       return;
     }
 
-    // ===================================================
-    // VALIDATION
-    // ===================================================
-
     if (!formData.name.trim()) {
       setMessage(
         "Please enter food name."
@@ -445,19 +461,16 @@ function AdminFoods() {
       return;
     }
 
-    // ===================================================
-    // SAVE
-    // ===================================================
-
     try {
       setSaving(true);
 
       const isEditing =
         editingId !== null;
 
+      // FIXED URL
       const url = isEditing
-        ? `${API_URL}/${editingId}`
-        : API_URL;
+        ? `${FOODS_API_URL}/${editingId}`
+        : FOODS_API_URL;
 
       const method = isEditing
         ? "PUT"
@@ -484,6 +497,11 @@ function AdminFoods() {
       console.log(
         "SENDING FOOD:",
         foodData
+      );
+
+      console.log(
+        "FOOD API URL:",
+        url
       );
 
       const response = await fetch(url, {
@@ -586,8 +604,9 @@ function AdminFoods() {
     try {
       setMessage("");
 
+      // FIXED URL
       const response = await fetch(
-        `${API_URL}/${id}`,
+        `${FOODS_API_URL}/${id}`,
         {
           method: "DELETE",
 
@@ -701,10 +720,6 @@ function AdminFoods() {
   return (
     <div className="admin-foods">
 
-      {/* =================================================
-          HEADER
-      ================================================= */}
-
       <div className="admin-food-header">
 
         <div>
@@ -738,10 +753,6 @@ function AdminFoods() {
 
       </div>
 
-      {/* =================================================
-          AUTH
-      ================================================= */}
-
       <div className="auth-info">
 
         <span>
@@ -769,10 +780,6 @@ function AdminFoods() {
 
       </div>
 
-      {/* =================================================
-          MESSAGE
-      ================================================= */}
-
       {message && (
         <div
           className="admin-message"
@@ -781,10 +788,6 @@ function AdminFoods() {
           {message}
         </div>
       )}
-
-      {/* =================================================
-          FORM
-      ================================================= */}
 
       <section className="food-form-card">
 
@@ -821,10 +824,6 @@ function AdminFoods() {
 
           <div className="form-grid">
 
-            {/* =================================================
-                FOOD NAME
-            ================================================= */}
-
             <div className="form-group">
 
               <label>
@@ -853,10 +852,6 @@ function AdminFoods() {
                   }}
                   required
                 />
-
-                {/* =================================================
-                    FOOD SUGGESTIONS
-                ================================================= */}
 
                 {foodSuggestions.length > 0 && (
 
@@ -913,10 +908,6 @@ function AdminFoods() {
 
             </div>
 
-            {/* =================================================
-                PRICE
-            ================================================= */}
-
             <div className="form-group">
 
               <label>
@@ -939,10 +930,6 @@ function AdminFoods() {
               />
 
             </div>
-
-            {/* =================================================
-                CATEGORY
-            ================================================= */}
 
             <div className="form-group">
 
@@ -991,10 +978,6 @@ function AdminFoods() {
 
             </div>
 
-            {/* =================================================
-                DESCRIPTION
-            ================================================= */}
-
             <div className="form-group full">
 
               <label>
@@ -1021,10 +1004,6 @@ function AdminFoods() {
 
             </div>
 
-            {/* =================================================
-                IMAGE
-            ================================================= */}
-
             <div className="form-group full">
 
               <label>
@@ -1048,10 +1027,6 @@ function AdminFoods() {
 
           </div>
 
-          {/* =================================================
-              IMAGE PREVIEW
-          ================================================= */}
-
           {formData.image && (
 
             <div className="image-preview">
@@ -1074,10 +1049,6 @@ function AdminFoods() {
             </div>
 
           )}
-
-          {/* =================================================
-              BUTTONS
-          ================================================= */}
 
           <div className="form-buttons">
 
@@ -1116,10 +1087,6 @@ function AdminFoods() {
 
       </section>
 
-      {/* =================================================
-          FOOD LIST
-      ================================================= */}
-
       <section className="food-list-section">
 
         <div className="food-list-header">
@@ -1148,10 +1115,6 @@ function AdminFoods() {
           </button>
 
         </div>
-
-        {/* =================================================
-            LOADING
-        ================================================= */}
 
         {loading ? (
 
@@ -1196,10 +1159,6 @@ function AdminFoods() {
                   key={food.id}
                 >
 
-                  {/* =================================================
-                      IMAGE
-                  ================================================= */}
-
                   <div className="admin-food-image">
 
                     {food.image ? (
@@ -1228,10 +1187,6 @@ function AdminFoods() {
 
                   </div>
 
-                  {/* =================================================
-                      INFO
-                  ================================================= */}
-
                   <div className="admin-food-info">
 
                     <div className="food-name-price">
@@ -1255,10 +1210,6 @@ function AdminFoods() {
                         "No description available."}
                     </p>
 
-                    {/* =================================================
-                        CATEGORY
-                    ================================================= */}
-
                     <div className="food-category-display">
 
                       Category:{" "}
@@ -1281,10 +1232,6 @@ function AdminFoods() {
                       </strong>
 
                     </div>
-
-                    {/* =================================================
-                        ACTIONS
-                    ================================================= */}
 
                     <div className="food-actions">
 
